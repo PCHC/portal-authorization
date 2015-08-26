@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Patient;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,36 @@ class PatientController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function getIndex()
+    {
+        //
+        return view('welcome');
+    }
+
+    public function getConfirm(Request $request, $token)
+    {
+        //
+        $patient = Patient::where('token', $token)->firstOrFail();
+        return view('patients.confirm', ['token' => $token, 'patient' => $patient]);
+    }
+
+    public function postConfirm(Request $request, $token)
+    {
+        //
+        $patient = Patient::where('token', $token)->firstOrFail();
+
+        // Increment the number of attempts made
+        $patient->attempts++;
+        $patient->save();
+
+        if($request->email == $patient->email){
+          return view('patients.authorize', ['token' => $token, 'patient' => $patient]);
+        } else {
+          return view('patients.confirm', ['token' => $token, 'patient' => $patient])->withErrors('Email does not match');
+        }
+    }
+
+    public function postAuthorize(Request $request)
     {
         //
     }
@@ -24,7 +54,7 @@ class PatientController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function getCreate()
     {
         //
     }
@@ -46,7 +76,7 @@ class PatientController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function getShow($id)
     {
         //
     }
@@ -57,7 +87,7 @@ class PatientController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
+    public function getEdit($id)
     {
         //
     }
