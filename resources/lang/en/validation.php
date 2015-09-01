@@ -88,8 +88,20 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'email' => [
+            'required' => 'Please enter your email address.',
+        ],
+        'dob_year' => [
+            'required' => 'Please enter your date of birth year.',
+        ],
+        'dob_month' => [
+            'required' => 'Please enter your date of birth month.',
+        ],
+        'dob_day' => [
+            'required' => 'Please enter your date of birth day.',
+        ],
+        'auth_confirmed' => [
+            'accepted' => 'Please confirm you have read and accept the Patient Portal Authorization.',
         ],
     ],
 

@@ -15,5 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('patients/confirm/{slashData?}', 'PatientController@getConfirm')->where('slashData', '(.*)');
+Route::get('patients/verify/{slashData?}', 'PatientController@getVerify')->where('slashData', '(.*)');
 Route::controller('patients', 'PatientController');

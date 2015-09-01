@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Patient;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 class PatientController extends Controller
 {
@@ -18,35 +19,101 @@ class PatientController extends Controller
     public function getIndex()
     {
         //
-        return view('welcome');
+        return view('patients.verify-input');
+    }
+
+    public function getVerify(Request $request, $token = NULL)
+    {
+        if(empty($token)){
+          $getToken = $request->get('token');
+          if(!empty($getToken)){
+            return redirect()->action('PatientController@getVerify', [$getToken]);
+          }
+          return view('patients.verify-input');
+        }
+
+        //
+        $patient = Patient::where('token', $token)->firstOrFail();
+        return view('patients.verify', ['token' => $token, 'patient' => $patient]);
+    }
+
+    public function postVerify(Request $request, $token)
+    {
+      $this->validate($request, [
+           'email' => 'required',
+           'dob_year' => 'required',
+           'dob_month' => 'required',
+           'dob_day' => 'required',
+       ]);
+
+      $patient = Patient::where('token', $token)->firstOrFail();
+
+      // Increment the number of attempts made
+      $patient->attempts++;
+      $patient->save();
+
+      $dob = Carbon::createFromDate($request->dob_year, $request->dob_month, $request->dob_day)->toDateString();
+
+      if($request->email == $patient->email && $dob == $patient->dob){
+        $request->session()->put('patient_id', $patient->id);
+        return redirect()->action('PatientController@getAuthorize', [$token]);
+      } else {
+        return redirect()->action('PatientController@getVerify', [$token])->withErrors('Email and Date of Birth do not match.');
+      }
+    }
+
+    public function getAuthorize(Request $request, $token)
+    {
+      if(!$request->session()->has('patient_id')){
+        return redirect()->action('PatientController@getVerify', [$token])->withErrors('Please enter your email and date of birth to verify your identity.');
+      }
+
+      $patient = Patient::find( $request->session()->get('patient_id') );
+
+      if($token != $patient->token) {
+        return redirect()->action('PatientController@getVerify', [$token])->withErrors('Tokens do not match.');
+      }
+
+      return view('patients.authorize', ['token' => $token, 'patient' => $patient]);
+    }
+
+    public function postAuthorize(Request $request, $token)
+    {
+      $this->validate($request, [
+           'auth_confirmed' => 'accepted',
+       ]);
+
+      $patient = Patient::find($request->id);
+      $patient->auth_confirmed = TRUE;
+      $patient->save();
+
+      return redirect()->action('PatientController@getConfirm', [$token]);
     }
 
     public function getConfirm(Request $request, $token)
     {
-        //
-        $patient = Patient::where('token', $token)->firstOrFail();
-        return view('patients.confirm', ['token' => $token, 'patient' => $patient]);
+      if(!$request->session()->has('patient_id')){
+        return redirect()->action('PatientController@getVerify', [$token])->withErrors('Please enter your email and date of birth to verify your identity.');
+      }
+
+      $patient = Patient::find( $request->session()->get('patient_id') );
+
+      $request->session()->flush();
+
+      return view('patients.confirm', ['patient' => $patient]);
     }
 
-    public function postConfirm(Request $request, $token)
+    public function postConfirm(Request $request)
     {
-        //
-        $patient = Patient::where('token', $token)->firstOrFail();
+      $this->validate($request, [
+           'auth_confirmed' => 'accepted',
+       ]);
 
-        // Increment the number of attempts made
-        $patient->attempts++;
-        $patient->save();
+      $patient = Patient::find($request->id);
+      $patient->auth_confirmed = TRUE;
+      $patient->save();
 
-        if($request->email == $patient->email){
-          return view('patients.authorize', ['token' => $token, 'patient' => $patient]);
-        } else {
-          return view('patients.confirm', ['token' => $token, 'patient' => $patient])->withErrors('Email does not match');
-        }
-    }
-
-    public function postAuthorize(Request $request)
-    {
-        //
+      var_dump($patient);
     }
 
     /**
