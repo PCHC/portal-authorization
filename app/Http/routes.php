@@ -12,8 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->action('PatientController@getVerify');
 });
 
-Route::get('patients/verify/{slashData?}', 'PatientController@getVerify')->where('slashData', '(.*)');
 Route::controller('patients', 'PatientController');

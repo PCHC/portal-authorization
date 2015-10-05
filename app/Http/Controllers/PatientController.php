@@ -33,7 +33,10 @@ class PatientController extends Controller
         }
 
         //
-        $patient = Patient::where('token', $token)->firstOrFail();
+        $patient = Patient::where('token', $token)->first();
+        if(empty($patient)){
+          return redirect()->action('PatientController@getVerify')->withErrors('Authorization token does not exist. Please enter below:');
+        }
         return view('patients.verify', ['token' => $token, 'patient' => $patient]);
     }
 
