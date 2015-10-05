@@ -6,6 +6,7 @@
   <div class="row">
     <div class="col-sm-8 col-sm-offset-2">
       <h1>PCHC Patient Portal Authorization</h1>
+      @include('patients.attempts')
       {!! Form::open(array(
         'action' => array(
           'PatientController@postVerify', $token

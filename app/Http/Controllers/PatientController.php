@@ -11,6 +11,11 @@ use Carbon\Carbon;
 
 class PatientController extends Controller
 {
+    public function __construct()
+    {
+      define('MAX_ATTEMPTS',5);
+    }
+
     /**
      * Display a listing of the resource.
      *
