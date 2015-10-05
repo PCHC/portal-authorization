@@ -1,11 +1,10 @@
 @extends('layouts.master')
 
-@section('title', 'Page Title')
+@section('title', 'AUTHORIZATION for Secure Website Communication – PCHC')
 
 @section('content')
   <div class="row">
-    <div class="col-sm-8 col-sm-offset-2">
-      <h1>AUTHORIZATION for Secure Website Communication – PCHC</h1>
+    <div class="col-xs-12">
       {!! Form::open(array(
         'action' => array(
           'PatientController@postAuthorize', $token

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel</title>
+    <title>@yield('title')</title>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -21,6 +21,7 @@
   <body>
       <div class="container">
           <div class="content">
+            <h1>@yield('title')</h1>
             @if($errors->has())
             <div class="row">
               <div class="col-xs-12">
@@ -33,7 +34,25 @@
               </div>
             </div>
             @endif
-            @yield('content')
+            <div class="row">
+              <div class="col-sm-8">
+                @yield('content')
+              </div>
+              <div class="col-sm-4">
+                <div class="list-group">
+                  <a href="https://portal.pchc.com/pchc/" class="list-group-item active" target="_blank"><strong>PCHC Patient Portal <span class="glyphicon glyphicon-new-window"></span></strong></a>
+                  <div class="list-group-item">
+                    <h4>Contact Information</h4>
+                    <p>Phone: 207-945-5247<br>
+                    <a href="http://pchc.com" target="_blank">pchc.com</a></p>
+
+                    <h4>Mailing Address</h4>
+                    <p>PO Box 439<br>
+                    Bangor, ME 04402</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
       </div>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
