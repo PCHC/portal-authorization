@@ -42,7 +42,21 @@ class PatientController extends Controller
         if(empty($patient)){
           return redirect()->action('PatientController@getVerify')->withErrors('Authorization token does not exist. Please enter below:');
         }
-        return view('patients.verify', ['token' => $token, 'patient' => $patient]);
+
+        $time_auth_sent = Carbon::createFromFormat('Y-m-d H:i:s', $patient->auth_sent);
+        $time_auth_expires = Carbon::createFromFormat('Y-m-d H:i:s', $patient->auth_sent)->addDays(5);
+
+        $auth_active = Carbon::now()->between($time_auth_sent, $time_auth_expires);
+
+        if(!$auth_active){
+          return redirect()->action('PatientController@getVerify')->withErrors('Your online authorization has expired. Please call PCHC at 207-945-5247 to continue your Patient Portal Authorization.');
+        }
+
+        if($patient->attempts >= MAX_ATTEMPTS){
+          return redirect()->action('PatientController@getVerify')->withErrors('You have incorrectly attemted to verify your identity too many times. Please call PCHC at 207-945-5247 to continue your Patient Portal Authorization.');
+        }
+
+        return view('patients.verify', ['token' => $token, 'patient' => $patient, 'time_auth_expires' => $time_auth_expires]);
     }
 
     public function postVerify(Request $request, $token)

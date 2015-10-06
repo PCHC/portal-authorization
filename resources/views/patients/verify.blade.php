@@ -5,6 +5,12 @@
 @section('content')
   <div class="row">
     <div class="col-xs-12">
+      <div class="panel panel-primary">
+        <div class="panel-body">
+          Please complete this section by <strong>{{ $time_auth_expires->toDayDateTimeString() }}</strong>
+        </div>
+      </div>
+
       @include('patients.attempts')
       {!! Form::open(array(
         'action' => array(
