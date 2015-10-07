@@ -5,6 +5,7 @@
 @section('content')
   <div class="row">
     <div class="col-xs-12">
+      <h2>Patient Verification</h2>
       {!! Form::open(array(
         'action' => 'PatientController@getVerify',
         'method' => 'get',

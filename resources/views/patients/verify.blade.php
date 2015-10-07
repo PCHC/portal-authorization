@@ -5,6 +5,7 @@
 @section('content')
   <div class="row">
     <div class="col-xs-12">
+      <h2>Patient Verification</h2>
       <div class="panel panel-primary">
         <div class="panel-body">
           Please complete this section by <strong>{{ $time_auth_expires->toDayDateTimeString() }}</strong>

@@ -11,7 +11,7 @@
       <h4>Instructions for Communicating Using the PCHC Secure Website</h4>
     </div>
     <div class="panel-body">
-      <p>For your convenience and to enhance your care experience, PCHC offers you the option of using its patient portal, known as “eHealth.”  eHealth allows you to communicate with us, to schedule appointments and view some of your health information online. Below are some basic instructions about using eHealth. The first page contains an authorization to communicate using the secure portal, which you must read and sign while in the PCHC offices before we will activate your access. Please review this document carefully, and feel free to ask us any questions you have about eHealth</p>
+      <p>For your convenience and to enhance your care experience, PCHC offers you the option of using its patient portal, known as "eHealth." eHealth allows you to communicate with us, to schedule appointments and view some of your health information online. Below are some basic instructions about using eHealth. The first page contains an authorization to communicate using the secure portal, which you must read and sign while in the PCHC offices before we will activate your access. Please review this document carefully, and feel free to ask us any questions you have about eHealth.</p>
 
       <h4>What is the eHealth? </h4>
       <p>PCHC's eHealth is a secure website where you may view information from your electronic medical record. With this service, you can:</p>
@@ -25,14 +25,14 @@
         <li>Send messages to the billing office</li>
       </ul>
 
-      <p>If you would like to use this service, please read and sign the attached authorization form to show that you understand and agree to the rules below. The form must be signed in the office and in front of a staff member. </p>
+      <p>If you would like to use this service, please read and sign the attached authorization form to show that you understand and agree to the rules below. The form must be signed in the office and in front of a staff member.</p>
 
       <h4>Will my information be secure?</h4>
       <p>We have taken steps to ensure that information sent through this online service is secure. To make your health information more secure, you must sign the attached authorization form and get your password from the office in person. Do not share this password with anyone, as it will allow access to some of your private health information.</p>
 
       <p>We cannot guarantee the confidentiality of your email once it arrives in your in-box. We only send email through a secure server, which means the email is encrypted and, therefore, reasonably secure. However, there are some special issues with email you need to be aware of:</p>
       <ul>
-        <li>Your employer typically owns the equipment, servers and all the information contained on them, and it reserves the right to access your email at any time. Once the email arrives in your in-box, therefore, its contents may be viewed by your employer (as part of an audit, for example, or for some other business reason). Accordingly, it is better to use a personal email address in connection with eHealth.</li>
+        <li>Your employer typically owns the equipment, servers and all the information contained on them, and it reserves the right to access your email at any time. Once the email arrives in your in-box, therefore, its contents may be viewed by your employer (as part of an audit, for example, or for some other business reason). Accordingly, it is better to use a personal email address in connection with eHealth. </li>
         <li>If your personal email address is a shared family email address, other family members may see your messages which will contain health information that you may not want disclosed even to family members. To avoid that, ensure your personal email is accessed only by you. </li>
         <li>You should never share your confidential user name and password with anyone; if you do, that person may see your private health information and communicate with your provider as if they were you. </li>
         <li>There is a small risk that email messages may be intercepted by others (“hackers”), although if you only send emails through the patient portal your email should remain as safe as it can be from hackers.</li>

@@ -5,6 +5,7 @@
 @section('content')
   <div class="row">
     <div class="col-xs-12">
+      <h2>Authorization Form</h2>
       {!! Form::open(array(
         'action' => array(
           'PatientController@postAuthorize', $token
@@ -36,7 +37,7 @@
 
       <p>Before signing this Authorization Form, I was made aware of PCHC’s Notice of Privacy Practices. I have been given the opportunity to read the Notice of Privacy Practices or had it explained to me.</p>
 
-      <p>This Authorization is active until canceled in writing on paper or online. <strong>Parent and legal guardian access to a minor patient’s portal is automatically restricted after age 11, unless permission from both the patient and the legal guardian is received.</strong> By signing this form, I do not in any way waive my physician-patient privileges.</p>
+      <p>This Authorization is active until canceled in writing on paper or online. <strong>Parent and legal guardian access to a minor patient’s portal is automatically restricted after age 11.</strong> By signing this form, I do not in any way waive my physician-patient privileges.</p>
       <ul>
         <li>I understand that I may obtain a copy of this authorization at any time.</li>
       </ul>
