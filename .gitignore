@@ -6,4 +6,4 @@ Homestead.json
 composer.phar
 public/cgi-bin/
 
-.elasticbeanstalk
+.elasticbeanstalk/
