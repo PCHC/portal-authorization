@@ -43,6 +43,10 @@ class PatientController extends Controller
           return redirect()->action('PatientController@getVerify')->withErrors('Authorization token does not exist. Please enter below:');
         }
 
+        if($patient->auth_confirmed){
+          return redirect()->action('PatientController@getVerify')->withErrors('Your Patient Portal Authorization has already been confirmed. If you need further assistance, please call PCHC at 207-945-5247.');
+        }
+
         $time_auth_sent = Carbon::createFromFormat('Y-m-d H:i:s', $patient->auth_sent);
         $time_auth_expires = Carbon::createFromFormat('Y-m-d H:i:s', $patient->auth_sent)->addDays(5);
 
