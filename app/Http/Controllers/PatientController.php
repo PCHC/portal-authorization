@@ -80,7 +80,10 @@ class PatientController extends Controller
 
       $dob = Carbon::createFromDate($request->dob_year, $request->dob_month, $request->dob_day)->toDateString();
 
-      if($request->email == $patient->email && $dob == $patient->dob){
+      $requestEmailLower = strtolower($request->email);
+      $patientEmailLower = strtolower($patient->email);
+
+      if($requestEmailLower == $patientEmailLower && $dob == $patient->dob){
         $request->session()->put('patient_id', $patient->id);
         return redirect()->action('PatientController@getAuthorize', [$token]);
       } else {
